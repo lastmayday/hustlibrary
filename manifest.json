@@ -1,0 +1,22 @@
+{
+   "browser_action": {
+      "default_icon": "icon.png"
+   },
+   "content_scripts": [ {
+      "js": [ "jquery.js", "inject.js" ],
+      "matches": [ "http://book.douban.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "description": "豆瓣读书页面直接查询华科图书馆有没有",
+   "icons": {
+      "128": "icon.png",
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png"
+   },
+   "manifest_version": 2,
+   "name": "华科图书馆豆瓣读书查询",
+   "permissions": [ "tabs", "http://ftp.lib.hust.edu.cn/search*" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "1.2"
+}
