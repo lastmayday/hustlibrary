@@ -4,7 +4,7 @@
    },
    "content_scripts": [ {
       "js": [ "jquery.js", "inject.js" ],
-      "matches": [ "http://book.douban.com/*" ],
+      "matches": [ "http://book.douban.com/subject/*" ],
       "run_at": "document_end"
    } ],
    "description": "豆瓣读书页面直接查询华科图书馆有没有",
