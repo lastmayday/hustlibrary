@@ -1,0 +1,36 @@
+{
+   "background": {
+      "page": "src/bg/bg.html",
+      "persistent": true
+   },
+   "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "src/browser_action/browser_action.html",
+      "default_title": "华中科技大学图书馆"
+   },
+   "content_scripts": [ {
+      "js": [ "bower_components/jquery/jquery.min.js", "src/inject/inject.js" ],
+      "matches": [ "http://book.douban.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+   "description": "华中科技大学图书馆助手. 包括1.豆瓣读书页面直接查询华科图书馆有没有 2.显示借阅信息以及到期提醒",
+   "homepage_url": "http://lastmayday.org/",
+   "icons": {
+      "128": "icon.png",
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png"
+   },
+   "manifest_version": 2,
+   "name": "HUST Library",
+   "permissions": [ 
+       "tabs", 
+       "alarms", 
+       "cookies", 
+       "notifications",
+       "*://ftp.lib.hust.edu.cn/*"
+   ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "0.0.2"
+}
