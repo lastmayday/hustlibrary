@@ -50,7 +50,7 @@ app.factory('libraryStorage', function () {
   };
 
   var setDeadlines = function(deadlines){
-	localStorage.setItem(DEADLINES_STORAGE_COUNT, JSON.stringify(deadlines));
+    localStorage.setItem(DEADLINES_STORAGE_COUNT, JSON.stringify(deadlines));
   };
 
   return {
@@ -68,9 +68,9 @@ app.factory('libraryStorage', function () {
 
     setBooks: setBooks,
 	
-	getInfo: getInfo,
+    getInfo: getInfo,
 	
-	setInfo: setInfo,
+    setInfo: setInfo,
 
     getDeadlines: getDeadlines,
 
@@ -86,11 +86,11 @@ app.factory('libraryStorage', function () {
 
     getUserName: function(){
       return JSON.parse(localStorage.getItem(USER_STORAGE_NAME) || '0');
-	},
+    },
     
     setUserName: function(user_name){
-	  localStorage.setItem(USER_STORAGE_NAME, JSON.stringify(user_name));	
-	},
+      localStorage.setItem(USER_STORAGE_NAME, JSON.stringify(user_name));	
+    },
     
     reset: function(){
       localStorage.removeItem(IS_SIGNED_IN_STORAGE_ID);

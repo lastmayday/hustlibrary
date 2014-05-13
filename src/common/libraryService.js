@@ -12,53 +12,53 @@ app.factory('libraryService', function($http, libraryStorage, icon){
   var getLogin = function(user_name, user_id){
     var deferred = Q.defer();
     $.ajax({
-	  url: login_url,
+      url: login_url,
       type: "POST",
       data: {'name': user_name, 'code': user_id, 'submit.x': 66, 'submit.y': 14, 'submit': "submit"},
       success: function(data){
-	      $http.get(book_url).then(function(response){
-		      deferred.resolve(response.data); 
-		  });
-	  }	
-	});
+        $http.get(book_url).then(function(response){
+          deferred.resolve(response.data); 
+        });
+      }	
+    });
     return deferred.promise;
   };
 
   var getItems = function(books){
     var resp = {
-	  allItems: [],
-	  info: ""
-	};
+      allItems: [],
+      info: ""
+    };
     var $books  = $(books);
     var $items = $books.find(".patFuncEntry");
-	resp.info = $books.find(".patStatusLinks").text();
+    resp.info = $books.find(".patStatusLinks").text();
     var reg = /(\d{2})-(\d{2})-(\d{2})/;
     var deferred = Q.defer();
     for(var i=0; i<$items.length; i++){
-       var $item = $items.eq(i);
-       var title = $item.find(".patFuncTitle").find("a").text();
-       var status = $item.find(".patFuncStatus").text();
-       var danger = false;
-       var money = false;
-       if(status){
-		   var date = status.match(reg);
-           var today = new Date();
-           var deadline = new Date('20'+date[3], parseInt(date[2])-1, date[1], 17);
-           var days = deadline.getTime() - today.getTime();
-           if(days < 0 ){
-			   danger = true;
-               money = true;
-               days = Math.abs(days);
-		   }
-           days = parseInt(days / (1000 * 60 * 60 * 24));
-           if(days >= 0 && days <= 4){
-			   danger = true;
-		   }
-	   }
-       var code = $item.find(".patFuncCallNo").text();
-       var data = {'title': title, 'status': status, 'code': code, "danger": danger, "money": money};
-       resp.allItems.push(data);
-	}
+      var $item = $items.eq(i);
+      var title = $item.find(".patFuncTitle").find("a").text();
+      var status = $item.find(".patFuncStatus").text();
+      var danger = false;
+      var money = false;
+      if(status){
+        var date = status.match(reg);
+        var today = new Date();
+        var deadline = new Date('20'+date[3], parseInt(date[2])-1, date[1], 17);
+        var days = deadline.getTime() - today.getTime();
+        if(days < 0 ){
+          danger = true;
+          money = true;
+          days = Math.abs(days);
+        }
+        days = parseInt(days / (1000 * 60 * 60 * 24));
+        if(days >= 0 && days <= 4){
+          danger = true;
+        }
+      }
+      var code = $item.find(".patFuncCallNo").text();
+      var data = {'title': title, 'status': status, 'code': code, "danger": danger, "money": money};
+      resp.allItems.push(data);
+    }
     deferred.resolve(resp);
     return deferred.promise;
   };
@@ -67,17 +67,17 @@ app.factory('libraryService', function($http, libraryStorage, icon){
     var events = {
       books: [],
       deadlines: 0,
-	  info: ''
+      info: ''
     };
-	var items = resp.allItems;
+    var items = resp.allItems;
     events.info = resp.info;
     for(var i=0; i<items.length; i++){
       var item = items[i];
       if(item.danger){
-		  events.deadlines ++;
-	  }
+        events.deadlines ++;
+      }
       events.books = events.books.concat(item);
-	}
+    }
     return events;
   };
 
@@ -101,10 +101,10 @@ app.factory('libraryService', function($http, libraryStorage, icon){
       if(events){
         var books = events.books;
         var deadlines = events.deadlines;
-		var info = events.info;
+        var info = events.info;
         libraryStorage.setBooks(books);
         libraryStorage.setDeadlines(deadlines);
-		libraryStorage.setInfo(info);
+        libraryStorage.setInfo(info);
       }
       libraryStorage.unNew();
       icon.updateIcon();
