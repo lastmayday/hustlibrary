@@ -43,14 +43,11 @@ app.factory('libraryService', function($http, libraryStorage, icon){
       if(status){
         var date = status.match(reg);
         var today = new Date();
-        var deadline = new Date('20'+date[3], parseInt(date[2])-1, date[1], 17);
+        var deadline = new Date('20'+date[1], parseInt(date[2])-1, date[3], 17);
+		console.log(deadline);
         var days = deadline.getTime() - today.getTime();
-        if(days < 0 ){
-          danger = true;
-          money = true;
-          days = Math.abs(days);
-        }
         days = parseInt(days / (1000 * 60 * 60 * 24));
+		console.log(days);
         if(days >= 0 && days <= 4){
           danger = true;
         }
