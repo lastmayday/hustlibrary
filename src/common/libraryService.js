@@ -2,7 +2,7 @@
 
 app.factory('libraryService', function($http, libraryStorage, icon){
   var login_url = 'https://ftp.lib.hust.edu.cn/patroninfo*chx~S0';
-  var book_url = 'https://ftp.lib.hust.edu.cn/patroninfo~S0*chx/1246189/items';
+  var book_url = 'https://ftp.lib.hust.edu.cn/patroninfo~S0*chx/';
   var page = "";
   var ERROR = {
     NOT_LOGIN: 1,
@@ -16,10 +16,14 @@ app.factory('libraryService', function($http, libraryStorage, icon){
       type: "POST",
       data: {'name': user_name, 'code': user_id, 'submit.x': 66, 'submit.y': 14, 'submit': "submit"},
       success: function(data){
+        var uid_re = /patroninfo\*chx\/(\d+)\/?/;
+        var uid_data = data.match(uid_re);
+        var uid = uid_data[1];
+        book_url = book_url + uid + '/items'
         $http.get(book_url).then(function(response){
-          deferred.resolve(response.data); 
+          deferred.resolve(response.data);
         });
-      }	
+      }
     });
     return deferred.promise;
   };
