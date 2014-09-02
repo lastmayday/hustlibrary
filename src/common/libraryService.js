@@ -19,7 +19,7 @@ app.factory('libraryService', function($http, libraryStorage, icon){
         var uid_re = /patroninfo\*chx\/(\d+)\/?/;
         var uid_data = data.match(uid_re);
         var uid = uid_data[1];
-        book_url = book_url + uid + '/items'
+        book_url = book_url + uid + '/items';
         $http.get(book_url).then(function(response){
           deferred.resolve(response.data);
         });
@@ -96,31 +96,34 @@ app.factory('libraryService', function($http, libraryStorage, icon){
   var updateData = function(){
     libraryStorage.reNew();
     icon.initIcon();
-    getBooks().then(function(events){
-      if(events){
-        var books = events.books;
-        var deadlines = events.deadlines;
-        var info = events.info;
-        libraryStorage.setBooks(books);
-        libraryStorage.setDeadlines(deadlines);
-        libraryStorage.setInfo(info);
-      }
-      libraryStorage.unNew();
-      icon.updateIcon();
-    }, function(reason){
-      console.log("failed", reason);
-      switch (reason) {
-      case ERROR.NOT_LOGIN:
-        libraryStorage.signOut();
-        break;
-      case ERROR.REQUEST_FAILED:
-        libraryStorage.removeExpiredDeadlines();
-        break;
-      default:
-      }
-      libraryStorage.unNew();
-      icon.updateIcon();
-    });
+    if(libraryStorage.isSignedIn()){
+      getBooks().then(function(events){
+        if(events){
+          var books = events.books;
+          var deadlines = events.deadlines;
+          var info = events.info;
+          libraryStorage.setBooks(books);
+          libraryStorage.setDeadlines(deadlines);
+          libraryStorage.setInfo(info);
+        }
+        libraryStorage.unNew();
+        icon.updateIcon();
+      }, function(reason){
+        console.log("failed", reason);
+        switch (reason) {
+        case ERROR.NOT_LOGIN:
+          libraryStorage.signOut();
+          break;
+        case ERROR.REQUEST_FAILED:
+          libraryStorage.removeExpiredDeadlines();
+          break;
+        default:
+        }
+        libraryStorage.unNew();
+        icon.updateIcon();
+      });
+    }
+    icon.updateIcon();
   };
 
   return {

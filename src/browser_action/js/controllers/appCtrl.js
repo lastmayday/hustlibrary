@@ -2,9 +2,10 @@
 'use strict';
 app.controller('appCtrl', function LibraryCtrl($scope, libraryStorage, libraryService, icon){
 
+  var isSignedIn = libraryStorage.isSignedIn();
+
   $scope.books = libraryStorage.getBooks();
 
-  var isSignedIn = libraryStorage.isSignedIn();
   $scope.displaySignIn = !isSignedIn;
   $scope.signIn = function(){
     var user_name = $("#user_name").val();
@@ -24,12 +25,21 @@ app.controller('appCtrl', function LibraryCtrl($scope, libraryStorage, librarySe
   }
 
   $scope.displayBooks = !isNew && isSignedIn;
-   
+
   var info = $.trim(libraryStorage.getInfo());
   $scope.booksInfo = info;
   $scope.displayInfo = info.length ? true : false;
-   
+
   $scope.open = function(){
-    chrome.tabs.create({'url': 'https://ftp.lib.hust.edu.cn/'})
+    chrome.tabs.create({'url': 'https://ftp.lib.hust.edu.cn/'});
+  };
+
+  $scope.signOut = function(){
+    libraryStorage.unNew();
+    libraryStorage.reset();
+    libraryStorage.signOut();
+    $scope.displayLoading = false;
+    $scope.displayBooks = false;
+    $scope.displaySignIn = true;
   };
 });

@@ -21,7 +21,7 @@ app.factory('libraryStorage', function () {
   var unNew = function(){
     localStorage.setItem(IS_NEW_STORAGE_ID, '0');
   };
-  
+
   var getRemoved = function(){
     return JSON.parse(localStorage.getItem(REMOVED_STORAGE_ID) || '[]');
   };
@@ -36,7 +36,7 @@ app.factory('libraryStorage', function () {
   var setBooks = function(books){
     localStorage.setItem(BOOKS_STORAGE_ID, JSON.stringify(books));
   };
-  
+
   var getInfo = function(){
     return JSON.parse(localStorage.getItem(BOOKS_STORAGE_INFO) || '0');
   };
@@ -67,9 +67,9 @@ app.factory('libraryStorage', function () {
     getBooks: getBooks,
 
     setBooks: setBooks,
-	
+
     getInfo: getInfo,
-	
+
     setInfo: setInfo,
 
     getDeadlines: getDeadlines,
@@ -79,7 +79,7 @@ app.factory('libraryStorage', function () {
     getUserID: function(){
       return JSON.parse(localStorage.getItem(USER_STORAGE_ID) || '0');
     },
-    
+
     setUserID: function(user_id){
       localStorage.setItem(USER_STORAGE_ID, JSON.stringify(user_id));
     },
@@ -87,11 +87,11 @@ app.factory('libraryStorage', function () {
     getUserName: function(){
       return JSON.parse(localStorage.getItem(USER_STORAGE_NAME) || '0');
     },
-    
+
     setUserName: function(user_name){
-      localStorage.setItem(USER_STORAGE_NAME, JSON.stringify(user_name));	
+      localStorage.setItem(USER_STORAGE_NAME, JSON.stringify(user_name));
     },
-    
+
     reset: function(){
       localStorage.removeItem(IS_SIGNED_IN_STORAGE_ID);
       localStorage.removeItem(USER_STORAGE_ID);
@@ -100,14 +100,14 @@ app.factory('libraryStorage', function () {
       localStorage.setItem(DEADLINES_STORAGE_COUNT, '0');
       localStorage.setItem(REMOVED_STORAGE_ID, '[]');
     },
-    
+
     isSignedIn: function(){
       return JSON.parse(localStorage.getItem(IS_SIGNED_IN_STORAGE_ID) || '0');
     },
-    
+
     signIn: function(){
       localStorage.setItem(IS_SIGNED_IN_STORAGE_ID, '1');
-    }, 
+    },
 
     signOut: function(){
       localStorage.setItem(IS_SIGNED_IN_STORAGE_ID, '0');

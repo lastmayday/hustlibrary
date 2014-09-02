@@ -30,6 +30,7 @@
         <button class="btn btn-primary" ng-click="signIn()">登录</button>
       </div>
       <div ng-show="displayBooks">
+        <button type="button" class="btn btn-link" ng-click="signOut()">退出帐号</button>
 	    <button type="button" class="btn btn-link" ng-click="open()">去图书馆!</button>
 	    <div class="alert alert-danger" ng-show="displayInfo">{{ booksInfo }}</div>
         <ul class="list-group" ng-show="(books).length">

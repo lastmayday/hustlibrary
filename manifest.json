@@ -24,13 +24,13 @@
    },
    "manifest_version": 2,
    "name": "HUST Library",
-   "permissions": [ 
-       "tabs", 
-       "alarms", 
-       "cookies", 
+   "permissions": [
+       "tabs",
+       "alarms",
+       "cookies",
        "notifications",
        "*://ftp.lib.hust.edu.cn/*"
    ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "0.0.2"
+   "version": "0.0.3"
 }
