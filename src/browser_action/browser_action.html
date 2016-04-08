@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="masthead clearfix">
-    <h3 class="text-muted">HUST图书馆借阅小能手~</h3>
+  <div class="head">
+    <h4 class="text-muted">HUST图书馆借阅小助手</h4>
   </div>
   <div class="container-fluid">
     <section ng-controller="appCtrl">
       <div class="alert alert-success" ng-show="displayLoading">
-        <p>等一下下正在获取图书信息~ 2秒之后再来看一下!</p>
+        <p>正在获取图书信息~ 2秒之后再来看一下!</p>
       </div>
       <div ng-show="displaySignIn">
         <div class="form-group">
@@ -23,23 +23,24 @@
           <input type="text" class="form-control" id="user_name" name="user_name" value=""/>
         </div>
         <div class="form-group">
-          <p>请输入借书证上的条码,如:21169795</p>
-          <label for="user_id">条码: </label>
+          <p>请在下面输入您的学工号:</p>
+          <label for="user_id">学工号: </label>
           <input type="text" class="form-control" name="user_id" id="user_id" value=""/>
         </div>
         <button class="btn btn-primary" ng-click="signIn()">登录</button>
       </div>
       <div ng-show="displayBooks">
         <button type="button" class="btn btn-link" ng-click="signOut()">退出帐号</button>
-	    <button type="button" class="btn btn-link" ng-click="open()">去图书馆!</button>
-	    <div class="alert alert-danger" ng-show="displayInfo">{{ booksInfo }}</div>
-        <ul class="list-group" ng-show="(books).length">
+        <button type="button" class="btn btn-link" ng-click="open()">去图书馆!</button>
+        <div class="alert alert-danger" ng-show="displayInfo">{{ booksInfo }}</div>
+        <ul class="list-group" ng-show="books.length">
            <li class="list-group-item" ng-repeat="book in books">
               <p class="text-success">{{ book.title }}<span class="label label-warning" ng-show="{{ book.danger }}">要到期啦!</span><span class="label label-danger" ng-show="{{ book.money }}">快去交钱!</span></p>
               <p class="text-primary">{{ book.status }}</p>
               <p>{{ book.code }}</p>
            </li>
         </ul>
+        <div class="nobook" ng-show="!books.length">未找到借书</div>
       </div>
     </section>
   </div>

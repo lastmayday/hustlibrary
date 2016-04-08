@@ -10,7 +10,7 @@
    },
    "content_scripts": [ {
       "js": [ "bower_components/jquery/jquery.min.js", "src/inject/inject.js" ],
-      "matches": [ "http://book.douban.com/*" ],
+      "matches": [ "https://book.douban.com/*", "http://book.douban.com/*" ],
       "run_at": "document_end"
    } ],
    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",

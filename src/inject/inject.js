@@ -3,14 +3,14 @@ if($('#buyinfo').length){
   $('#hustlib').append('<h2>华科图书馆有没有?</h2><div class="bs" id="isex"></div>');
   if (typeof($('#info').text().split('ISBN:')[1]) != 'undefined') {
     var isbn = $('#info').text().split('ISBN:')[1].split(' ')[1];
-    var url = 'http://ftp.lib.hust.edu.cn/search~S0*chx/?searchtype=i&searcharg=+' + isbn;
+    var url = 'https://ftp.lib.hust.edu.cn/search~S0*chx/?searchtype=i&searcharg=+' + isbn;
     $.ajax({
       url : url,
       success : function (msg) {
         if (msg.indexOf('未找到符合查询条件的馆藏') != -1) {
-          $('#isex').html('我科快去买书啦~竟然没有!');
+          $('#isex').html('我科快去买书啦~ 竟然没有!');
         } else {
-          $('#isex').html('我科的图书馆当然有!');
+          $('#isex').html("当然有! (●'◡'●)ﾉ♥");
           $('#isex').after('<br><h2>在哪里在哪里?</h2>');
           $(msg).find(".bibOrderEntry").appendTo('#hustlib');
           $(msg).find('.bibItems').appendTo('#hustlib');

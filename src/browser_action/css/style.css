@@ -2,6 +2,11 @@ body {
   min-width:600px;
 }
 
-h3 {
-  margin: 10px;
+.head {
+  margin: 16px 28px;
+}
+
+.nobook {
+  margin: 16px 28px;
+  color: #999;
 }
