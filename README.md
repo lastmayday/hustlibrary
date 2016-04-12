@@ -1,6 +1,6 @@
 ## 华中科技大学图书馆的Chrome插件
 
-**因为没有Chrome开发者帐号所以需要自己打包一下生成.crx文件**
+[插件安装地址](https://chrome.google.com/webstore/detail/hust-library/abbdkngccefmkgifkakoglhpifohekig?hl=zh-CN)
 
 ### 功能1: 豆瓣读书页面显示图书馆藏
 
