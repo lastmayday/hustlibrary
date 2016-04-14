@@ -10,11 +10,11 @@
    },
    "content_scripts": [ {
       "js": [ "bower_components/jquery/jquery.min.js", "src/inject/inject.js" ],
-      "matches": [ "https://book.douban.com/*", "http://book.douban.com/*" ],
+      "matches": [ "https://book.douban.com/*", "http://book.douban.com/*", "https://www.amazon.cn/*" ],
       "run_at": "document_end"
    } ],
    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-   "description": "华中科技大学图书馆助手. 包括1.豆瓣读书页面直接查询华科图书馆有没有 2.显示借阅信息以及到期提醒",
+   "description": "华中科技大学图书馆助手",
    "homepage_url": "http://lastmayday.org/",
    "icons": {
       "128": "icon.png",
@@ -32,5 +32,5 @@
        "*://ftp.lib.hust.edu.cn/*"
    ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "0.0.3"
+   "version": "0.0.4"
 }
